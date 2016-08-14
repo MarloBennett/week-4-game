@@ -30,6 +30,11 @@ var zamPowers = {
 //will be set to true when the game restarts
 var restartGame = false;
 
+var imageLeia;
+var imagePadme;
+var imageRey;
+var imageZam;
+
 $( document ).ready(function() {
 
 //calls function to initialize game when page is loaded
@@ -41,16 +46,16 @@ function initializeNewGame() {
 	restartGame = false;
 
 //put character images and info in chooseCharacter div
-	var imageLeia = $("<div class='charImg'> <p>" + leiaPowers.name + "</p> <img src='assets/images/leia.jpg'> <p>" + leiaPowers.healthPoints + "</p> </div>");
+	imageLeia = $("<div class='charImg charLeia'> <p>" + leiaPowers.name + "</p> <img src='assets/images/leia.jpg'> <p>" + leiaPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageLeia);
 
-	var imagePadme = $("<div class='charImg'> <p>" + padmePowers.name + "</p> <img src='assets/images/padme.jpg'> <p>" + padmePowers.healthPoints + "</p> </div>");
+	imagePadme = $("<div class='charImg charPadme'> <p>" + padmePowers.name + "</p> <img src='assets/images/padme.jpg'> <p>" + padmePowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imagePadme);
 
-	var imageRey = $("<div class='charImg'> <p>" + reyPowers.name + "</p> <img src='assets/images/rey.jpg'> <p>" + reyPowers.healthPoints + "</p> </div>");
+	imageRey = $("<div class='charImg charRey'> <p>" + reyPowers.name + "</p> <img src='assets/images/rey.jpg'> <p>" + reyPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageRey);
 
-	var imageZam = $("<div class='charImg'> <p>" + zamPowers.name + "</p> <img src='assets/images/zam.jpg'> <p>" + zamPowers.healthPoints + "</p> </div>");
+	imageZam = $("<div class='charImg charZam'> <p>" + zamPowers.name + "</p> <img src='assets/images/zam.jpg'> <p>" + zamPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageZam);
 
 //reset powers to original values
@@ -71,10 +76,39 @@ function initializeNewGame() {
 	zamPowers.counterAttackPower = 30;
 
 }
+
 //onclick function to select your character
+$(".charImg").on("click", function(event) {
 
 //move your character to "your character" and other characters to enemies section
+	if (!$(event.target).is(".charLeia")) {
+		$("#yourCharacter").append(imageLeia);
+		$("#enemies").append(imagePadme);
+		$("#enemies").append(imageRey);
+		$("#enemies").append(imageZam);
+	} 
+	
+	if (!$(event.target).is(".charPadme")) {
+		$("#yourCharacter").append(imagePadme);
+		$("#enemies").append(imageLeia);
+		$("#enemies").append(imageRey);
+		$("#enemies").append(imageZam);
+	} 
 
+	if (!$(event.target).is(".charRey")) {
+		$("#yourCharacter").append(imageRey);
+		$("#enemies").append(imageLeia);
+		$("#enemies").append(imagePadme);
+		$("#enemies").append(imageZam);
+	}
+
+	if (!$(event.target).is(".charZam")) {
+		$("#yourCharacter").append(imageZam);
+		$("#enemies").append(imageLeia);
+		$("#enemies").append(imagePadme);
+		$("#enemies").append(imageRey);
+	}
+})
 //onclick function to select enemy and move to defender area
 
 //click attack button - 
