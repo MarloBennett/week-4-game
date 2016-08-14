@@ -40,7 +40,7 @@ function initializeNewGame() {
 
 	restartGame = false;
 
-//put character images in chooseCharacter div
+//put character images and info in chooseCharacter div
 	var imageLeia = $("<div class='charImg'> <p>" + leiaPowers.name + "</p> <img src='assets/images/leia.jpg'> <p>" + leiaPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageLeia);
 
@@ -52,6 +52,23 @@ function initializeNewGame() {
 
 	var imageZam = $("<div class='charImg'> <p>" + zamPowers.name + "</p> <img src='assets/images/zam.jpg'> <p>" + zamPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageZam);
+
+//reset powers to original values
+	leiaPowers.healthPoints = 150;
+	leiaPowers.attackPower = 10;
+	leiaPowers.counterAttackPower = 20;
+
+	padmePowers.healthPoints = 90;
+	padmePowers.attackPower = 8;
+	padmePowers.counterAttackPower = 35;
+
+	reyPowers.healthPoints = 135;
+	reyPowers.attackPower = 12;
+	reyPowers.counterAttackPower = 15;
+
+	zamPowers.healthPoints = 85;
+	zamPowers.attackPower = 14;
+	zamPowers.counterAttackPower = 30;
 
 }
 //onclick function to select your character
