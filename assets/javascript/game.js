@@ -104,14 +104,32 @@ $(".charZam").on("click", function(event) {
 	$("#yourCharacter").append(imageZam);
 	$("#enemies").append(imageLeia, imagePadme, imageRey);
 })
-}
+		selectDefender();
 
+}
 //select enemy and move to defender area
 
-function selectEnemy() {
+function selectDefender() {
 	
-	
+	$(".charLeia").on("click", function(event) {
+		$("#defenders").append(imageLeia);
+	})
+
+	$(".charPadme").on("click", function(event) {
+		$("#defenders").append(imagePadme);
+	})
+
+	$(".charRey").on("click", function(event) {
+		$("#defenders").append(imageRey);
+	})
+
+	$(".charZam").on("click", function(event) {
+		$("#defenders").append(imageZam);
+	})
+
+
 }
+
 
 //click attack button - 
 
