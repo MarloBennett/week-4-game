@@ -1,26 +1,54 @@
 //assign each character's health points, attack power, and counter attack power
-var leia = {
+var leiaPowers = {
 	healthPoints: 150,
 	attackPower: 10,
-	counterAttackPower: 20
+	counterAttackPower: 20,
 }
 
-var padme = {
+var padmePowers = {
 	healthPoints: 90,
 	attackPower: 8,
 	counterAttackPower: 35
 }
 
-var rey = {
+var reyPowers = {
 	healthPoints: 135,
 	attackPower: 12,
 	counterAttackPower: 15
 }
 
-var zam = {
+var zamPowers = {
 	healthPoints: 85,
 	attackPower: 14,
 	counterAttackPower: 30
+}
+
+//will be set to true when the game restarts
+var restartGame = false;
+
+$( document ).ready(function() {
+
+//calls function to initialize game when page is loaded
+initializeNewGame();
+
+//initializes a new game
+function initializeNewGame() {
+
+	restartGame = false;
+
+//put character images in chooseCharacter div
+	var imageLeia = $("<img src='assets/images/leia.jpg'>");
+	$("#chooseCharacter").append(imageLeia);
+
+	var imagePadme = $("<img src='assets/images/padme.jpg'>");
+	$("#chooseCharacter").append(imagePadme);
+
+	var imageRey = $("<img src='assets/images/rey.jpg'>");
+	$("#chooseCharacter").append(imageRey);
+
+	var imageZam = $("<img src='assets/images/zam.jpg'>");
+	$("#chooseCharacter").append(imageZam);
+
 }
 //onclick function to select your character
 
@@ -45,3 +73,4 @@ var zam = {
 //when there are no enemies left you win
 
 //include a restart button
+});
