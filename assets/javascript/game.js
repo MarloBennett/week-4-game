@@ -1,23 +1,27 @@
 //assign each character's health points, attack power, and counter attack power
 var leiaPowers = {
+	name: "Leia Organa",
 	healthPoints: 150,
 	attackPower: 10,
 	counterAttackPower: 20,
 }
 
 var padmePowers = {
+	name: "Padme Amidala",
 	healthPoints: 90,
 	attackPower: 8,
 	counterAttackPower: 35
 }
 
 var reyPowers = {
+	name: "Rey",
 	healthPoints: 135,
 	attackPower: 12,
 	counterAttackPower: 15
 }
 
 var zamPowers = {
+	name: "Zam Wessell",
 	healthPoints: 85,
 	attackPower: 14,
 	counterAttackPower: 30
@@ -37,16 +41,16 @@ function initializeNewGame() {
 	restartGame = false;
 
 //put character images in chooseCharacter div
-	var imageLeia = $("<img src='assets/images/leia.jpg'>");
+	var imageLeia = $("<div class='charImg'> <p>" + leiaPowers.name + "</p> <img src='assets/images/leia.jpg'> <p>" + leiaPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageLeia);
 
-	var imagePadme = $("<img src='assets/images/padme.jpg'>");
+	var imagePadme = $("<div class='charImg'> <p>" + padmePowers.name + "</p> <img src='assets/images/padme.jpg'> <p>" + padmePowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imagePadme);
 
-	var imageRey = $("<img src='assets/images/rey.jpg'>");
+	var imageRey = $("<div class='charImg'> <p>" + reyPowers.name + "</p> <img src='assets/images/rey.jpg'> <p>" + reyPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageRey);
 
-	var imageZam = $("<img src='assets/images/zam.jpg'>");
+	var imageZam = $("<div class='charImg'> <p>" + zamPowers.name + "</p> <img src='assets/images/zam.jpg'> <p>" + zamPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageZam);
 
 }

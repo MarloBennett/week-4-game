@@ -1,3 +1,13 @@
 img {
-	height: 150px;
+	height: 100px;
+}
+
+.charImg {
+	float: left;
+	margin: 10px;
+	border: solid 1px;
+}
+
+p {
+	text-align: center;
 }
