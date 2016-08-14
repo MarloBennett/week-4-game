@@ -75,41 +75,43 @@ function initializeNewGame() {
 	zamPowers.attackPower = 14;
 	zamPowers.counterAttackPower = 30;
 
+	selectCharacter();
 }
 
-//onclick function to select your character
-$(".charImg").on("click", function(event) {
-
 //move your character to "your character" and other characters to enemies section
-	if (!$(event.target).is(".charLeia")) {
-		$("#yourCharacter").append(imageLeia);
-		$("#enemies").append(imagePadme);
-		$("#enemies").append(imageRey);
-		$("#enemies").append(imageZam);
-	} 
-	
-	if (!$(event.target).is(".charPadme")) {
-		$("#yourCharacter").append(imagePadme);
-		$("#enemies").append(imageLeia);
-		$("#enemies").append(imageRey);
-		$("#enemies").append(imageZam);
-	} 
+function selectCharacter() {
 
-	if (!$(event.target).is(".charRey")) {
-		$("#yourCharacter").append(imageRey);
-		$("#enemies").append(imageLeia);
-		$("#enemies").append(imagePadme);
-		$("#enemies").append(imageZam);
-	}
+$(".charLeia").on("click", function(event) {
 
-	if (!$(event.target).is(".charZam")) {
-		$("#yourCharacter").append(imageZam);
-		$("#enemies").append(imageLeia);
-		$("#enemies").append(imagePadme);
-		$("#enemies").append(imageRey);
-	}
+	$("#yourCharacter").append(imageLeia);
+	$("#enemies").append(imagePadme, imageRey, imageZam);
 })
-//onclick function to select enemy and move to defender area
+
+$(".charPadme").on("click", function(event) {
+
+	$("#yourCharacter").append(imagePadme);
+	$("#enemies").append(imageLeia, imageRey, imageZam);
+})
+
+$(".charRey").on("click", function(event) {
+
+	$("#yourCharacter").append(imageRey);
+	$("#enemies").append(imageLeia, imagePadme, imageZam);
+})
+
+$(".charZam").on("click", function(event) {
+
+	$("#yourCharacter").append(imageZam);
+	$("#enemies").append(imageLeia, imagePadme, imageRey);
+})
+}
+
+//select enemy and move to defender area
+
+function selectEnemy() {
+	
+	
+}
 
 //click attack button - 
 
