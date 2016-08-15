@@ -43,7 +43,7 @@ initializeNewGame();
 //initializes a new game
 function initializeNewGame() {
 
-	restartGame = false;
+	//restartGame = false;
 
 //put character images and info in chooseCharacter div
 	$("<div id='chooseCharacter' />").appendTo("#characters")
@@ -78,30 +78,47 @@ function initializeNewGame() {
 	zamPowers.counterAttackPower = 30;
 
 	selectCharacter();
+//selectDefender();
+	
 }
 
 function selectCharacter() {
 
 	$(".charImg").on("click", function(event) {
 
+		if ( !$.trim( $("#yourCharacter").html() ).length ) {
 		//moves your selection to the your character section
-		$(this).appendTo("#yourCharacter");
-		
+			$(this).appendTo("#yourCharacter");
+		}
+		else {
+			$(this).appendTo("#defenders");
+		}
 		//moves other character to the enemies section
 		$("#chooseCharacter").appendTo("#enemies");
 		
 		//turns off click event
-		$(".charImg").off("click");
-	//	var chosenCharacter = $(this);
-
-	//	$("#yourCharacter").append(chosenCharacter);
-});
-
-//	$("#yourCharacter").append(imageLeia);
-//	$("#enemies").append(imagePadme, imageRey, imageZam);
-//	selectDefender();
-//})
+		//$(".charImg").off("click");
+	});
 }
+	
+
+
+/*function selectDefender() {
+
+	$(".charImg").on("click", function(event) {
+
+		//moves your selection to the defenders section
+		$(this).appendTo("#defenders");
+		
+		//moves other character to the enemies section
+		//$("#chooseCharacter").appendTo("#enemies");
+		
+		//turns off click event
+		$(".charImg").off("click");
+	});
+}
+*/
+
 
 //move your character to "your character" and other characters to enemies section
 /*function selectCharacter() {
@@ -110,6 +127,10 @@ $(".charLeia").on("click", function(event) {
 
 	$("#yourCharacter").append(imageLeia);
 	$("#enemies").append(imagePadme, imageRey, imageZam);
+	$(".charPadme").addClass("fighterPadme");
+	$(".charRey").addClass("fighterRey");
+	$(".charZam").addClass("fighterZam");
+	$(".charLeia").off("click");
 	selectDefender();
 })
 
@@ -117,13 +138,21 @@ $(".charPadme").on("click", function(event) {
 
 	$("#yourCharacter").append(imagePadme);
 	$("#enemies").append(imageLeia, imageRey, imageZam);
-	selectDefender();
+	$(".charLeia").addClass("fighterLeia");
+	$(".charRey").addClass("fighterRey");
+	$(".charZam").addClass("fighterZam");
+	$(".charPadme").off("click");
+		selectDefender();
 })
 
 $(".charRey").on("click", function(event) {
 
 	$("#yourCharacter").append(imageRey);
 	$("#enemies").append(imageLeia, imagePadme, imageZam);
+	$(".charLeia").addClass("fighterLeia");
+	$(".charPadme").addClass("fighterPadme");
+	$(".charZam").addClass("fighterZam");
+	$(".charRey").off("click");off("click");	
 	selectDefender();
 })
 
@@ -131,7 +160,11 @@ $(".charZam").on("click", function(event) {
 
 	$("#yourCharacter").append(imageZam);
 	$("#enemies").append(imageLeia, imagePadme, imageRey);
-	selectDefender();
+	$(".charLeia").addClass("fighterLeia");
+	$(".charPadme").addClass("fighterPadme");
+	$(".charRey").addClass("fighterRey");
+	$(".charZam").off("click");off("click");
+		selectDefender();
 })
 	
 
@@ -140,22 +173,22 @@ $(".charZam").on("click", function(event) {
 
 function selectDefender() {
 	
-	$(".charLeia").on("click", function(event) {
+	$(".fighterLeia").on("click", function(event) {
 		$("#defenders").append(imageLeia);
 	})
 
-	$(".charPadme").on("click", function(event) {
+	$(".fighterPadme").on("click", function(event) {
 		$("#defenders").append(imagePadme);
 	})
 
-	$(".charRey").on("click", function(event) {
+	$(".fighterRey").on("click", function(event) {
 		$("#defenders").append(imageRey);
 	})
 
-	$(".charZam").on("click", function(event) {
+	$(".fighterZam").on("click", function(event) {
 		$("#defenders").append(imageZam);
 	})
-
+	//off("click");
 
 }*/
 
