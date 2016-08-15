@@ -46,6 +46,8 @@ function initializeNewGame() {
 	restartGame = false;
 
 //put character images and info in chooseCharacter div
+	$("<div id='chooseCharacter' />").appendTo("#characters")
+
 	imageLeia = $("<div class='charImg charLeia'> <p>" + leiaPowers.name + "</p> <img src='assets/images/leia.jpg'> <p>" + leiaPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageLeia);
 
@@ -82,18 +84,23 @@ function selectCharacter() {
 
 	$(".charImg").on("click", function(event) {
 
-		//puts click choice in a variable
-		var chosenCharacter = $(this);
+		//moves your selection to the your character section
+		$(this).appendTo("#yourCharacter");
+		
+		//moves other character to the enemies section
+		$("#chooseCharacter").appendTo("#enemies");
+		
+		//turns off click event
+		$(".charImg").off("click");
+	//	var chosenCharacter = $(this);
 
-		$("#yourCharacter").append(chosenCharacter);
-
+	//	$("#yourCharacter").append(chosenCharacter);
 });
 
 //	$("#yourCharacter").append(imageLeia);
 //	$("#enemies").append(imagePadme, imageRey, imageZam);
 //	selectDefender();
 //})
-
 }
 
 //move your character to "your character" and other characters to enemies section
