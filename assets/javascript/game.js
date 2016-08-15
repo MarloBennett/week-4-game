@@ -78,33 +78,55 @@ function initializeNewGame() {
 	selectCharacter();
 }
 
-//move your character to "your character" and other characters to enemies section
 function selectCharacter() {
+
+	$(".charImg").on("click", function(event) {
+
+		//puts click choice in a variable
+		var chosenCharacter = $(this);
+
+		$("#yourCharacter").append(chosenCharacter);
+
+});
+
+//	$("#yourCharacter").append(imageLeia);
+//	$("#enemies").append(imagePadme, imageRey, imageZam);
+//	selectDefender();
+//})
+
+}
+
+//move your character to "your character" and other characters to enemies section
+/*function selectCharacter() {
 
 $(".charLeia").on("click", function(event) {
 
 	$("#yourCharacter").append(imageLeia);
 	$("#enemies").append(imagePadme, imageRey, imageZam);
+	selectDefender();
 })
 
 $(".charPadme").on("click", function(event) {
 
 	$("#yourCharacter").append(imagePadme);
 	$("#enemies").append(imageLeia, imageRey, imageZam);
+	selectDefender();
 })
 
 $(".charRey").on("click", function(event) {
 
 	$("#yourCharacter").append(imageRey);
 	$("#enemies").append(imageLeia, imagePadme, imageZam);
+	selectDefender();
 })
 
 $(".charZam").on("click", function(event) {
 
 	$("#yourCharacter").append(imageZam);
 	$("#enemies").append(imageLeia, imagePadme, imageRey);
+	selectDefender();
 })
-		selectDefender();
+	
 
 }
 //select enemy and move to defender area
@@ -128,7 +150,7 @@ function selectDefender() {
 	})
 
 
-}
+}*/
 
 
 //click attack button - 
