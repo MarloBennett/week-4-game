@@ -39,6 +39,8 @@ var selectedCharacter;
 var selectedDefender;
 
 var selectedCharacterHP;
+var selectedCharacterAP;
+var selectedCharacterCAP;
 
 var enemyChosen = false;
 
@@ -59,6 +61,9 @@ function initializeNewGame() {
 //SELF: add power values as classes, use parseint to get value later crystal file 12 counter = counter + parseInt($(this).data('num'));
 	imageLeia = $("<div class='charImg charLeia'> <p>" + leiaPowers.name + "</p> <img src='assets/images/leia.jpg'> <p>" + leiaPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageLeia);
+	$(".charLeia").attr("data-hp", 150);
+	$(".charLeia").attr("data-ap", 10);
+	$(".charLeia").attr("data-cap", 20);
 
 	imagePadme = $("<div class='charImg charPadme'> <p>" + padmePowers.name + "</p> <img src='assets/images/padme.jpg'> <p>" + padmePowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imagePadme);
@@ -98,9 +103,13 @@ function selectCharacter() {
 		//moves your selection to the your character section if it's empty
 			$(this).appendTo("#yourCharacter");
 			selectedCharacter = this;
-			//selectedCharacterHP = $(this).attr("value");
+			selectedCharacterHP = $(this).data("hp");
+			selectedCharacterAP = $(this).data("ap");
+			selectedCharacterCAP = $(this).data("cap");
 			console.log(selectedCharacter);
 			console.log(selectedCharacterHP);
+			console.log(selectedCharacterAP);
+			console.log(selectedCharacterCAP);
 		}
 		else {
 			//moves your selection to defender if you've already chosen your character
