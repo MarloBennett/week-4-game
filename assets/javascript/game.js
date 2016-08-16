@@ -38,6 +38,8 @@ var imageZam;
 var selectedCharacter;
 var selectedDefender;
 
+var selectedCharacterHP;
+
 var enemyChosen = false;
 
 $( document ).ready(function() {
@@ -53,6 +55,8 @@ function initializeNewGame() {
 //put character images and info in chooseCharacter div
 	$("<div id='chooseCharacter' />").appendTo("#characters")
 
+
+//SELF: add power values as classes, use parseint to get value later crystal file 12 counter = counter + parseInt($(this).data('num'));
 	imageLeia = $("<div class='charImg charLeia'> <p>" + leiaPowers.name + "</p> <img src='assets/images/leia.jpg'> <p>" + leiaPowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imageLeia);
 
@@ -94,7 +98,9 @@ function selectCharacter() {
 		//moves your selection to the your character section if it's empty
 			$(this).appendTo("#yourCharacter");
 			selectedCharacter = this;
+			//selectedCharacterHP = $(this).attr("value");
 			console.log(selectedCharacter);
+			console.log(selectedCharacterHP);
 		}
 		else {
 			//moves your selection to defender if you've already chosen your character
