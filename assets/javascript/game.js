@@ -35,6 +35,9 @@ var imagePadme;
 var imageRey;
 var imageZam;
 
+var selectedCharacter;
+var selectedDefender;
+
 $( document ).ready(function() {
 
 //calls function to initialize game when page is loaded
@@ -78,8 +81,7 @@ function initializeNewGame() {
 	zamPowers.counterAttackPower = 30;
 
 	selectCharacter();
-//selectDefender();
-	
+
 }
 
 function selectCharacter() {
@@ -87,110 +89,24 @@ function selectCharacter() {
 	$(".charImg").on("click", function(event) {
 
 		if ( !$.trim( $("#yourCharacter").html() ).length ) {
-		//moves your selection to the your character section
+		//moves your selection to the your character section if it's empty
 			$(this).appendTo("#yourCharacter");
+			selectedCharacter = this;
+			console.log(selectedCharacter);
 		}
 		else {
+			//moves your selection to defender if you've already chosen your character
 			$(this).appendTo("#defenders");
+			selectedDefender = this;
+			console.log(selectedDefender);
 		}
-		//moves other character to the enemies section
+		//moves other characters to the enemies section
 		$("#chooseCharacter").appendTo("#enemies");
 		
 		//turns off click event
 		//$(".charImg").off("click");
 	});
 }
-	
-
-
-/*function selectDefender() {
-
-	$(".charImg").on("click", function(event) {
-
-		//moves your selection to the defenders section
-		$(this).appendTo("#defenders");
-		
-		//moves other character to the enemies section
-		//$("#chooseCharacter").appendTo("#enemies");
-		
-		//turns off click event
-		$(".charImg").off("click");
-	});
-}
-*/
-
-
-//move your character to "your character" and other characters to enemies section
-/*function selectCharacter() {
-
-$(".charLeia").on("click", function(event) {
-
-	$("#yourCharacter").append(imageLeia);
-	$("#enemies").append(imagePadme, imageRey, imageZam);
-	$(".charPadme").addClass("fighterPadme");
-	$(".charRey").addClass("fighterRey");
-	$(".charZam").addClass("fighterZam");
-	$(".charLeia").off("click");
-	selectDefender();
-})
-
-$(".charPadme").on("click", function(event) {
-
-	$("#yourCharacter").append(imagePadme);
-	$("#enemies").append(imageLeia, imageRey, imageZam);
-	$(".charLeia").addClass("fighterLeia");
-	$(".charRey").addClass("fighterRey");
-	$(".charZam").addClass("fighterZam");
-	$(".charPadme").off("click");
-		selectDefender();
-})
-
-$(".charRey").on("click", function(event) {
-
-	$("#yourCharacter").append(imageRey);
-	$("#enemies").append(imageLeia, imagePadme, imageZam);
-	$(".charLeia").addClass("fighterLeia");
-	$(".charPadme").addClass("fighterPadme");
-	$(".charZam").addClass("fighterZam");
-	$(".charRey").off("click");off("click");	
-	selectDefender();
-})
-
-$(".charZam").on("click", function(event) {
-
-	$("#yourCharacter").append(imageZam);
-	$("#enemies").append(imageLeia, imagePadme, imageRey);
-	$(".charLeia").addClass("fighterLeia");
-	$(".charPadme").addClass("fighterPadme");
-	$(".charRey").addClass("fighterRey");
-	$(".charZam").off("click");off("click");
-		selectDefender();
-})
-	
-
-}
-//select enemy and move to defender area
-
-function selectDefender() {
-	
-	$(".fighterLeia").on("click", function(event) {
-		$("#defenders").append(imageLeia);
-	})
-
-	$(".fighterPadme").on("click", function(event) {
-		$("#defenders").append(imagePadme);
-	})
-
-	$(".fighterRey").on("click", function(event) {
-		$("#defenders").append(imageRey);
-	})
-
-	$(".fighterZam").on("click", function(event) {
-		$("#defenders").append(imageZam);
-	})
-	//off("click");
-
-}*/
 
 
 //click attack button - 
