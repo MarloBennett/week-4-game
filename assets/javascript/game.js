@@ -28,7 +28,7 @@ var zamPowers = {
 }
 
 //will be set to true when the game restarts
-var restartGame = false;
+//var restartGame = false;
 
 var imageLeia;
 var imagePadme;
@@ -37,6 +37,8 @@ var imageZam;
 
 var selectedCharacter;
 var selectedDefender;
+
+var enemyChosen = false;
 
 $( document ).ready(function() {
 
@@ -81,7 +83,7 @@ function initializeNewGame() {
 	zamPowers.counterAttackPower = 30;
 
 	selectCharacter();
-
+	battle();
 }
 
 function selectCharacter() {
@@ -96,9 +98,11 @@ function selectCharacter() {
 		}
 		else {
 			//moves your selection to defender if you've already chosen your character
+			$(".noDefender").remove();
 			$(this).appendTo("#defenders");
 			selectedDefender = this;
 			console.log(selectedDefender);
+			enemyChosen = true;
 		}
 		//moves other characters to the enemies section
 		$("#chooseCharacter").appendTo("#enemies");
@@ -111,7 +115,18 @@ function selectCharacter() {
 
 //click attack button - 
 
-// if you try to select attack when there is no one there, txt msg that says there's no enemy to fight
+function battle() {
+
+	$("#fight").on("click", function(event) {
+		//warns if no enemy has been selected
+		if (!enemyChosen) {
+			$("<h5 class='noDefender'>There is no enemy to attack.</h5>").appendTo("#defenders");
+		}
+		
+
+	});
+}
+
 
 //should increase your attack power by its base power (show text message with HP) and decrease his HP by your current attack power (number by his images lowers accordingly)
 
