@@ -65,6 +65,8 @@ function initializeNewGame() {
 	$(".charLeia").attr("data-ap", 10);
 	$(".charLeia").attr("data-cap", 20);
 
+	//test comment for git 
+
 	imagePadme = $("<div class='charImg charPadme'> <p>" + padmePowers.name + "</p> <img src='assets/images/padme.jpg'> <p>" + padmePowers.healthPoints + "</p> </div>");
 	$("#chooseCharacter").append(imagePadme);
 
