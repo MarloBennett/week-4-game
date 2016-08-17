@@ -1,30 +1,9 @@
 //assign each character's health points, attack power, and counter attack power
-var leiaPowers = {
-	name: "Leia Organa",
-	healthPoints: 150,
-	attackPower: 10,
-	counterAttackPower: 20,
-}
-
-var padmePowers = {
-	name: "Padme Amidala",
-	healthPoints: 90,
-	attackPower: 8,
-	counterAttackPower: 35
-}
-
-var reyPowers = {
-	name: "Rey",
-	healthPoints: 135,
-	attackPower: 12,
-	counterAttackPower: 15
-}
-
-var zamPowers = {
-	name: "Zam Wessell",
-	healthPoints: 85,
-	attackPower: 14,
-	counterAttackPower: 30
+var powers = {
+	name: ["Leia Organa", "Padme Amidala", "Rey", "Zam Wessell"],
+	healthPoints: [130, 110, 135, 100],
+	attackPower: [10, 13, 12, 14],
+	counterAttackPower: [20, 25, 15, 30]
 }
 
 //will be set to true when the game restarts
@@ -59,25 +38,34 @@ function initializeNewGame() {
 
 
 //SELF: add power values as classes, use parseint to get value later crystal file 12 counter = counter + parseInt($(this).data('num'));
-	imageLeia = $("<div class='charImg charLeia'> <p>" + leiaPowers.name + "</p> <img src='assets/images/leia.jpg'> <p>" + leiaPowers.healthPoints + "</p> </div>");
+	imageLeia = $("<div class='charImg charLeia'> <p>" + powers.name[0] + "</p> <img src='assets/images/leia.jpg'> <p>" + powers.healthPoints[0] + "</p> </div>");
 	$("#chooseCharacter").append(imageLeia);
-	$(".charLeia").attr("data-hp", 150);
-	$(".charLeia").attr("data-ap", 10);
-	$(".charLeia").attr("data-cap", 20);
+	$(".charLeia").attr("data-hp", powers.healthPoints[0]);
+	$(".charLeia").attr("data-ap", powers.attackPower[0]);
+	$(".charLeia").attr("data-cap", powers.counterAttackPower[0]);
 
 	//test comment for git 
 
-	imagePadme = $("<div class='charImg charPadme'> <p>" + padmePowers.name + "</p> <img src='assets/images/padme.jpg'> <p>" + padmePowers.healthPoints + "</p> </div>");
+	imagePadme = $("<div class='charImg charPadme'> <p>" + powers.name[1] + "</p> <img src='assets/images/padme.jpg'> <p>" + powers.healthPoints[1] + "</p> </div>");
 	$("#chooseCharacter").append(imagePadme);
+	$(".charLeia").attr("data-hp", powers.healthPoints[1]);
+	$(".charLeia").attr("data-ap", powers.attackPower[1]);
+	$(".charLeia").attr("data-cap", powers.counterAttackPower[1]);
 
-	imageRey = $("<div class='charImg charRey'> <p>" + reyPowers.name + "</p> <img src='assets/images/rey.jpg'> <p>" + reyPowers.healthPoints + "</p> </div>");
+	imageRey = $("<div class='charImg charRey'> <p>" + powers.name[2] + "</p> <img src='assets/images/rey.jpg'> <p>" + powers.healthPoints[2] + "</p> </div>");
 	$("#chooseCharacter").append(imageRey);
+	$(".charLeia").attr("data-hp", powers.healthPoints[2]);
+	$(".charLeia").attr("data-ap", powers.attackPower[2]);
+	$(".charLeia").attr("data-cap", powers.counterAttackPower[2]);
 
-	imageZam = $("<div class='charImg charZam'> <p>" + zamPowers.name + "</p> <img src='assets/images/zam.jpg'> <p>" + zamPowers.healthPoints + "</p> </div>");
+	imageZam = $("<div class='charImg charZam'> <p>" + powers.name[3] + "</p> <img src='assets/images/zam.jpg'> <p>" + powers.healthPoints[3] + "</p> </div>");
 	$("#chooseCharacter").append(imageZam);
+	$(".charLeia").attr("data-hp", powers.healthPoints[3]);
+	$(".charLeia").attr("data-ap", powers.attackPower[3]);
+	$(".charLeia").attr("data-cap", powers.counterAttackPower[3]);
 
 //reset powers to original values
-	leiaPowers.healthPoints = 150;
+/*	leiaPowers.healthPoints = 150;
 	leiaPowers.attackPower = 10;
 	leiaPowers.counterAttackPower = 20;
 
@@ -91,7 +79,7 @@ function initializeNewGame() {
 
 	zamPowers.healthPoints = 85;
 	zamPowers.attackPower = 14;
-	zamPowers.counterAttackPower = 30;
+	zamPowers.counterAttackPower = 30;*/
 
 	selectCharacter();
 	battle();
