@@ -141,6 +141,11 @@ function battle() {
 			$("<h5 class='noDefender'>There is no enemy to attack.</h5>").appendTo("#defenders");
 		}
 		else {
+			actualBattle ();
+		}
+		
+		function actualBattle() {
+
 			$(".attackReport").remove();
 			
 			//Your HP goes down by defender's CAP damage
@@ -160,29 +165,26 @@ function battle() {
 			selectedCharacterAP = (selectedCharacterAP + selectedCharacterOriginalAP);
 			console.log("selected char ap " + selectedCharacterAP);
 			console.log("selected defender hp " + selectedDefenderHP);
+
+			if (selectedCharacterHP <= 0) {
+				$("<h5 class='youLost'>You have been defeated! Game over.</h5>").appendTo("#defenders");
+				$("#fight").off("click");
+			}
+			else if (selectedDefenderHP <= 0) {
+				$(".attackReport").remove();
+				$("<h5 class='youWonRound'>You defeated " + selectedDefenderName + ". You can select another enemy to fight.</h5>").appendTo("#defenders");
+				//need to remove that div and message
+				
+			}
+			//else if no enemies left, you win
 		}
 
 	});
 }
 
+//still need to update HP in character divs
 
-
-
-
-//your AP increases by your AP
-
-
-//should increase your attack power by its base power (show text message with HP) and decrease his HP by your current attack power (number by his images lowers accordingly)
-
-//enemy immediately counter attacks - should decrease your health points by the defender's counter attack power (show text message with his CAP, HP number by your image lowers accordingly)
-
-//keep going until your health points are less than zero (lose) - GAME OVER
-
-//or defender's HP is less than zero - you win this round (text msg that you defeated him and to choose another enemy). defender disappears from screen.
-
-//click a new enemy but your attack power and HP don't reset
-
-//when there are no enemies left you win
+//still need to change color of divs when moved to defender or enemy section
 
 //include a restart button
 });
