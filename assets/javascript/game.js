@@ -28,7 +28,9 @@ var selectedDefenderAP;
 var selectedDefenderCAP;
 var selectedDefenderName;
 
-var enemyChosen = false;
+var enemyChosen;
+
+var firstFight;
 
 $( document ).ready(function() {
 
@@ -39,6 +41,10 @@ initializeNewGame();
 function initializeNewGame() {
 
 	//restartGame = false;
+
+	enemyChosen = false;
+
+	firstFight = true;
 
 //put character images and info in chooseCharacter div
 	$("<div id='chooseCharacter' />").appendTo("#characters")
@@ -135,8 +141,6 @@ function selectCharacter() {
 function battle() {
 
 	$("#fight").on("click", function(event) {
-		
-		//var firstFight = true;
 
 		//warns if no enemy has been selected
 		if (!enemyChosen) {
@@ -150,27 +154,34 @@ function battle() {
 
 			$(".attackReport").remove();
 			
+			if (firstFight) {
+				selectedCharacterAP = selectedCharacterOriginalAP;
+			}
+			else {
+				//increases your character's AP
+				selectedCharacterAP = (selectedCharacterAP + selectedCharacterOriginalAP);
+			}
+			
 			//Your HP goes down by defender's CAP damage
 			selectedCharacterHP = (selectedCharacterHP - selectedDefenderCAP);
 			
 			//defender's HP goes down by your AP
 			selectedDefenderHP = (selectedDefenderHP - selectedCharacterAP);
-			
+
 			//you attacked defender for your AP damage
 			$("<h5 class='attackReport'>You attacked " + selectedDefenderName + " for " + selectedCharacterAP + " damage.</h5>").appendTo("#defenders");
 
 			//defender attacked you for her CAP damage
 			$("<h5 class='attackReport'>" + selectedDefenderName + " attacked you back for " + selectedDefenderCAP + " damage.</h5>").appendTo("#defenders");
+			
 			console.log("selected char hp " + selectedCharacterHP);
-
-			//increases your character's AP
-			selectedCharacterAP = (selectedCharacterAP + selectedCharacterOriginalAP);
 			console.log("selected char ap " + selectedCharacterAP);
 			console.log("selected defender hp " + selectedDefenderHP);
 
+			firstFight = false;
+
 			if (selectedCharacterHP <= 0) {
 				$(".attackReport").remove();
-				//$(".youWonRound").remove();
 				$("#defenders").children("div:first").remove();
 				$("<h5 class='youLost'>You have been defeated! Game over.</h5>").appendTo("#defenders");
 				$("#fight").off("click");
@@ -178,8 +189,7 @@ function battle() {
 			else if (selectedDefenderHP <= 0) {
 				$("#defenders").children("div:first").remove();
 				$(".attackReport").remove();
-				//$(".youWonRound").remove();
-				$("<h5 class='youWonRound'>You defeated " + selectedDefenderName + ". You can select another enemy to fight.</h5>").appendTo("#defenders");				
+				$("<h5 class='youWonRound'>You defeated " + selectedDefenderName + ". You can select another enemy to fight.</h5>").appendTo("#defenders");
 			}
 			//else if no enemies left, you win
 		}
