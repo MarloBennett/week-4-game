@@ -106,6 +106,8 @@ function selectCharacter() {
 		else {
 			//moves your selection to defender if you've already chosen your character
 			$(".noDefender").remove();
+			//remove the message that you won an earlier round (if it's there) when you select your next enemy
+			$(".youWonRound").remove();
 			$(this).appendTo("#defenders");
 			//captures defender's stats
 			selectedDefender = this;
@@ -141,7 +143,7 @@ function battle() {
 			$("<h5 class='noDefender'>There is no enemy to attack.</h5>").appendTo("#defenders");
 		}
 		else {
-			actualBattle ();
+			actualBattle();
 		}
 		
 		function actualBattle() {
@@ -167,14 +169,17 @@ function battle() {
 			console.log("selected defender hp " + selectedDefenderHP);
 
 			if (selectedCharacterHP <= 0) {
+				$(".attackReport").remove();
+				//$(".youWonRound").remove();
+				$("#defenders").children("div:first").remove();
 				$("<h5 class='youLost'>You have been defeated! Game over.</h5>").appendTo("#defenders");
 				$("#fight").off("click");
 			}
 			else if (selectedDefenderHP <= 0) {
+				$("#defenders").children("div:first").remove();
 				$(".attackReport").remove();
-				$("<h5 class='youWonRound'>You defeated " + selectedDefenderName + ". You can select another enemy to fight.</h5>").appendTo("#defenders");
-				//need to remove that div and message
-				
+				//$(".youWonRound").remove();
+				$("<h5 class='youWonRound'>You defeated " + selectedDefenderName + ". You can select another enemy to fight.</h5>").appendTo("#defenders");				
 			}
 			//else if no enemies left, you win
 		}
