@@ -1,7 +1,7 @@
 //assign each character's health points, attack power, and counter attack power
 var powers = {
 	name: ["Leia Organa", "Padme Amidala", "Rey", "Zam Wessell"],
-	healthPoints: [130, 110, 135, 100],
+	healthPoints: [150, 110, 135, 100],
 	attackPower: [10, 13, 12, 14],
 	counterAttackPower: [20, 25, 15, 30]
 }
@@ -191,7 +191,12 @@ function battle() {
 				$(".attackReport").remove();
 				$("<h5 class='youWonRound'>You defeated " + selectedDefenderName + ". You can select another enemy to fight.</h5>").appendTo("#defenders");
 			}
-			//else if no enemies left, you win
+			else if (!($("#enemies").has(".charImg").length)) {
+				//else if no enemies left, you win
+				$("#defenders").children("div:first").remove();
+				$(".attackReport").remove();
+				$("<h5 class='youWon'>All enemies are defeated. You win!</h5>").appendTo("#defenders");
+			}
 		}
 
 	});
