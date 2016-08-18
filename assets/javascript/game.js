@@ -6,9 +6,6 @@ var powers = {
 	counterAttackPower: [20, 25, 15, 30]
 }
 
-//will be set to true when the game restarts
-//var restartGame = false;
-
 var imageLeia;
 var imagePadme;
 var imageRey;
@@ -32,7 +29,7 @@ var enemyChosen;
 
 var firstFight;
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
 //calls function to initialize game when page is loaded
 initializeNewGame();
@@ -40,25 +37,24 @@ initializeNewGame();
 //initializes a new game
 function initializeNewGame() {
 
-	//restartGame = false;
-
 	enemyChosen = false;
 
 	firstFight = true;
 
-//put character images and info in chooseCharacter div
-	$("<div id='chooseCharacter' />").appendTo("#characters")
+	//reset powers to original values
+	powers.healthPoints = [150, 110, 135, 100];
+	powers.attackPower = [10, 13, 12, 14];
+	powers.counterAttackPower = [20, 25, 15, 30];
 
+	//put character images and info in chooseCharacter div
+	$("<div id='chooseCharacter' />").appendTo("#characters");
 
-//SELF: add power values as classes, use parseint to get value later crystal file 12 counter = counter + parseInt($(this).data('num'));
 	imageLeia = $("<div class='charImg charLeia'> <p>" + powers.name[0] + "</p> <img src='assets/images/leia.jpg'> <p>" + powers.healthPoints[0] + "</p> </div>");
 	$("#chooseCharacter").append(imageLeia);
 	$(".charLeia").data("identity", powers.name[0]);
 	$(".charLeia").attr("data-hp", powers.healthPoints[0]);
 	$(".charLeia").attr("data-ap", powers.attackPower[0]);
 	$(".charLeia").attr("data-cap", powers.counterAttackPower[0]);
-
-	//test comment for git 
 
 	imagePadme = $("<div class='charImg charPadme'> <p>" + powers.name[1] + "</p> <img src='assets/images/padme.jpg'> <p>" + powers.healthPoints[1] + "</p> </div>");
 	$("#chooseCharacter").append(imagePadme);
@@ -81,11 +77,6 @@ function initializeNewGame() {
 	$(".charZam").attr("data-ap", powers.attackPower[3]);
 	$(".charZam").attr("data-cap", powers.counterAttackPower[3]);
 
-//reset powers to original values
-	powers.healthPoints = [130, 110, 135, 100];
-	powers.attackPower = [10, 13, 12, 14];
-	powers.counterAttackPower = [20, 25, 15, 30];
-
 	selectCharacter();
 	battle();
 }
@@ -104,6 +95,7 @@ function selectCharacter() {
 			selectedCharacterAP = $(this).data("ap");
 			selectedCharacterOriginalAP = $(this).data("ap");
 			selectedCharacterCAP = $(this).data("cap");
+			
 			console.log(selectedCharacter);
 			console.log("selected char hp " + selectedCharacterHP);
 			console.log("selected char ap " + selectedCharacterAP);
@@ -121,6 +113,7 @@ function selectCharacter() {
 			selectedDefenderHP = $(this).data("hp");
 			selectedDefenderAP = $(this).data("ap");
 			selectedDefenderCAP = $(this).data("cap");
+			
 			console.log(selectedDefender);
 			console.log("selected defender hp " + selectedDefenderHP);
 			console.log("selected defender AP " + selectedDefenderAP);
@@ -202,9 +195,19 @@ function battle() {
 	});
 }
 
+$("#restart").on("click", function(event) {
+	
+	$(".charImg").remove();
+	$(".attackReport").remove();
+	$(".youWon").remove();
+	$(".youWonRound").remove();
+	$(".youLost").remove();
+	initializeNewGame();
+})
+
 //still need to update HP in character divs
 
 //still need to change color of divs when moved to defender or enemy section
 
-//include a restart button
+//fix battles no one wins now
 });
