@@ -97,8 +97,7 @@ function selectCharacter() {
 			selectedCharacterAP = $(this).data("ap");
 			selectedCharacterOriginalAP = $(this).data("ap");
 			selectedCharacterCAP = $(this).data("cap");
-			$(this).addClass("")
-
+			$(this).addClass("selectedChar");
 			//try if else statements to change HP for each character
 			
 			console.log(selectedCharacter);
@@ -118,6 +117,8 @@ function selectCharacter() {
 			selectedDefenderHP = $(this).data("hp");
 			selectedDefenderAP = $(this).data("ap");
 			selectedDefenderCAP = $(this).data("cap");
+			$(this).addClass("selectedDef");
+
 			
 			console.log(selectedDefender);
 			console.log("selected defender hp " + selectedDefenderHP);
@@ -218,8 +219,6 @@ $("#restart").on("click", function(event) {
 })
 
 //still need to update HP in character divs
-
-//still need to change color of divs when moved to defender or enemy section
 
 //fix battles no one wins now - think may be fixed
 });

@@ -6,10 +6,12 @@ img {
 	float: left;
 	margin: 10px;
 	border: solid 1px;
+	padding: 10px;
 }
 
 p {
 	text-align: center;
+	font-size: 16px;
 }
 
 h5 {
@@ -18,17 +20,13 @@ h5 {
 }
 
 .selectedChar {
-	background-color: white;
-	border: 1px solid green;
+	background-color: green;
+	border: 3px solid black;
+	color: white;
 }
 
-.availableEnemies {
-	background-color: red;
-	border: 1px solid black;
-}
-
-.selectedDefender {
+.selectedDef {
 	background-color: black;
 	color: white;
-	border: 1px solid green;
+	border: 3px solid green;
 }
