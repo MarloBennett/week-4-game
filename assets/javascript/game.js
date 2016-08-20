@@ -1,9 +1,9 @@
 //assign each character's health points, attack power, and counter attack power
 var powers = {
 	name: ["Leia Organa", "Padme Amidala", "Rey", "Zam Wessell"],
-	healthPoints: [150, 110, 135, 100],
-	attackPower: [10, 13, 12, 14],
-	counterAttackPower: [20, 25, 15, 30]
+	healthPoints: [125, 110, 125, 115],
+	attackPower: [17, 19, 19, 18],
+	counterAttackPower: [20, 21, 16, 19]
 }
 
 var imageLeia;
@@ -42,9 +42,9 @@ function initializeNewGame() {
 	firstFight = true;
 
 	//reset powers to original values
-	powers.healthPoints = [150, 110, 135, 100];
-	powers.attackPower = [10, 13, 12, 14];
-	powers.counterAttackPower = [20, 25, 15, 30];
+	powers.healthPoints = [125, 110, 125, 115];
+	powers.attackPower = [17, 19, 19, 18];
+	powers.counterAttackPower = [20, 21, 16, 19];
 
 	//put character images and info in chooseCharacter div
 	$("<div id='chooseCharacter' />").appendTo("#characters");
@@ -95,6 +95,8 @@ function selectCharacter() {
 			selectedCharacterAP = $(this).data("ap");
 			selectedCharacterOriginalAP = $(this).data("ap");
 			selectedCharacterCAP = $(this).data("cap");
+
+			//try if else statements to change HP for each character
 			
 			console.log(selectedCharacter);
 			console.log("selected char hp " + selectedCharacterHP);
@@ -209,5 +211,5 @@ $("#restart").on("click", function(event) {
 
 //still need to change color of divs when moved to defender or enemy section
 
-//fix battles no one wins now
+//fix battles no one wins now - think may be fixed
 });
