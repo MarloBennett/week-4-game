@@ -1,10 +1,4 @@
-//assign each character's health points, attack power, and counter attack power
-var powers = {
-	name: ["Leia Organa", "Padme Amidala", "Rey", "Zam Wessell"],
-	healthPoints: [125, 110, 126, 115],
-	attackPower: [17, 19, 19, 18],
-	counterAttackPower: [20, 21, 16, 19]
-}
+console.log("Win sequences: Leai - Rey, Zam, Padme; Padme - Rey, Leia, Zam; Rey - Padme, Leia, Zam; Zam - Leia, Rey, Padme");
 
 var imageLeia;
 var imagePadme;
@@ -29,7 +23,7 @@ var enemyChosen;
 
 var firstFight;
 
-var numOfBattles = 0;
+var numOfBattles;
 
 $(document).ready(function() {
 
@@ -39,14 +33,19 @@ initializeNewGame();
 //initializes a new game
 function initializeNewGame() {
 
+//assign each character's health points, attack power, and counterattack power
+	var powers = {
+	name: ["Leia Organa", "Padme Amidala", "Rey", "Zam Wessell"],
+	healthPoints: [125, 110, 126, 115],
+	attackPower: [17, 22, 20, 21],
+	counterAttackPower: [20, 21, 16, 19]
+	}
+
 	enemyChosen = false;
 
 	firstFight = true;
 
-	//reset powers to original values
-	powers.healthPoints = [125, 110, 126, 115];
-	powers.attackPower = [17, 19, 19, 18];
-	powers.counterAttackPower = [20, 21, 16, 19];
+	numOfBattles = 0;
 
 	//put character images and info in chooseCharacter div
 	$("<div id='chooseCharacter' />").appendTo("#characters");
@@ -91,12 +90,13 @@ function selectCharacter() {
 		//moves your selection to the your character section if it's empty
 			$(this).appendTo("#yourCharacter");
 			selectedCharacter = this;
-			//capturues your character's stats
+			//captures your character's stats
 			selectedCharacterName = $(this).data("identity");
 			selectedCharacterHP = $(this).data("hp");
 			selectedCharacterAP = $(this).data("ap");
 			selectedCharacterOriginalAP = $(this).data("ap");
 			selectedCharacterCAP = $(this).data("cap");
+			//changes color of your character's div and text
 			$(this).addClass("selectedChar");
 
 			console.log(selectedCharacter);
@@ -105,10 +105,11 @@ function selectCharacter() {
 			console.log( "selected car cap " + selectedCharacterCAP);
 		}
 		else {
-			//moves your selection to defender if you've already chosen your character
+			//removes the message that there's no one to fight (if it's there)
 			$(".noDefender").remove();
 			//remove the message that you won an earlier round (if it's there) when you select your next enemy
 			$(".youWonRound").remove();
+			//moves your selection to defender if you've already chosen your character
 			$(this).appendTo("#defenders");
 			//captures defender's stats
 			selectedDefender = this;
@@ -116,9 +117,9 @@ function selectCharacter() {
 			selectedDefenderHP = $(this).data("hp");
 			selectedDefenderAP = $(this).data("ap");
 			selectedDefenderCAP = $(this).data("cap");
+			//changes color of defender's color and text
 			$(this).addClass("selectedDef");
 
-			
 			console.log(selectedDefender);
 			console.log("selected defender hp " + selectedDefenderHP);
 			console.log("selected defender AP " + selectedDefenderAP);
@@ -127,14 +128,11 @@ function selectCharacter() {
 		}
 		//moves other characters to the enemies section
 		$("#chooseCharacter").appendTo("#enemies");
-		
-		//turns off click event
-		//$(".charImg").off("click");
 	});
 }
 
 
-//click attack button - 
+//click attack button 
 
 function battle() {
 
@@ -151,6 +149,7 @@ function battle() {
 		
 		function actualBattle() {
 
+			//removes previous battle numbers from display
 			$(".attackReport").remove();
 			
 			if (firstFight) {
@@ -164,6 +163,7 @@ function battle() {
 			//Your HP goes down by defender's CAP damage
 			selectedCharacterHP = (selectedCharacterHP - selectedDefenderCAP);
 
+			//updated HP in character div
 			if (selectedCharacterName === "Leia Organa") {
 				$(".healthLeia").html(selectedCharacterHP);
 			} 
@@ -219,7 +219,7 @@ function battle() {
 				numOfBattles++;
 
 					if (numOfBattles > 2) {
-					//else if no enemies left, you win
+					// if no enemies left, you win
 						$("#defenders").children("div:first").remove();
 						$(".attackReport").remove();
 						$(".youWonRound").remove();
@@ -242,6 +242,4 @@ $("#restart").on("click", function(event) {
 	$(".youLost").remove();
 	initializeNewGame();
 })
-
-//still need to update HP in character divs
 });
