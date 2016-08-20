@@ -98,7 +98,6 @@ function selectCharacter() {
 			selectedCharacterOriginalAP = $(this).data("ap");
 			selectedCharacterCAP = $(this).data("cap");
 			$(this).addClass("selectedChar");
-			//try if else statements to change HP for each character
 			
 			console.log(selectedCharacter);
 			console.log("selected char hp " + selectedCharacterHP);
@@ -219,6 +218,4 @@ $("#restart").on("click", function(event) {
 })
 
 //still need to update HP in character divs
-
-//fix battles no one wins now - think may be fixed
 });
