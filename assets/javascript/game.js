@@ -1,7 +1,7 @@
 //assign each character's health points, attack power, and counter attack power
 var powers = {
 	name: ["Leia Organa", "Padme Amidala", "Rey", "Zam Wessell"],
-	healthPoints: [125, 110, 125, 115],
+	healthPoints: [125, 110, 126, 115],
 	attackPower: [17, 19, 19, 18],
 	counterAttackPower: [20, 21, 16, 19]
 }
@@ -44,35 +44,35 @@ function initializeNewGame() {
 	firstFight = true;
 
 	//reset powers to original values
-	powers.healthPoints = [125, 110, 125, 115];
+	powers.healthPoints = [125, 110, 126, 115];
 	powers.attackPower = [17, 19, 19, 18];
 	powers.counterAttackPower = [20, 21, 16, 19];
 
 	//put character images and info in chooseCharacter div
 	$("<div id='chooseCharacter' />").appendTo("#characters");
 
-	imageLeia = $("<div class='charImg charLeia'> <p>" + powers.name[0] + "</p> <img src='assets/images/leia.jpg'> <p>" + powers.healthPoints[0] + "</p> </div>");
+	imageLeia = $("<div class='charImg charLeia'> <p>" + powers.name[0] + "</p> <img src='assets/images/leia.jpg'> <p class='healthLeia'>" + powers.healthPoints[0] + "</p> </div>");
 	$("#chooseCharacter").append(imageLeia);
 	$(".charLeia").data("identity", powers.name[0]);
 	$(".charLeia").attr("data-hp", powers.healthPoints[0]);
 	$(".charLeia").attr("data-ap", powers.attackPower[0]);
 	$(".charLeia").attr("data-cap", powers.counterAttackPower[0]);
 
-	imagePadme = $("<div class='charImg charPadme'> <p>" + powers.name[1] + "</p> <img src='assets/images/padme.jpg'> <p>" + powers.healthPoints[1] + "</p> </div>");
+	imagePadme = $("<div class='charImg charPadme'> <p>" + powers.name[1] + "</p> <img src='assets/images/padme.jpg'> <p class='healthPadme'>" + powers.healthPoints[1] + "</p> </div>");
 	$("#chooseCharacter").append(imagePadme);
 	$(".charPadme").data("identity", powers.name[1]);
 	$(".charPadme").attr("data-hp", powers.healthPoints[1]);
 	$(".charPadme").attr("data-ap", powers.attackPower[1]);
 	$(".charPadme").attr("data-cap", powers.counterAttackPower[1]);
 
-	imageRey = $("<div class='charImg charRey'> <p>" + powers.name[2] + "</p> <img src='assets/images/rey.jpg'> <p>" + powers.healthPoints[2] + "</p> </div>");
+	imageRey = $("<div class='charImg charRey'> <p>" + powers.name[2] + "</p> <img src='assets/images/rey.jpg'> <p class='healthRey'>" + powers.healthPoints[2] + "</p> </div>");
 	$("#chooseCharacter").append(imageRey);
 	$(".charRey").data("identity", powers.name[2]);
 	$(".charRey").attr("data-hp", powers.healthPoints[2]);
 	$(".charRey").attr("data-ap", powers.attackPower[2]);
 	$(".charRey").attr("data-cap", powers.counterAttackPower[2]);
 
-	imageZam = $("<div class='charImg charZam'> <p>" + powers.name[3] + "</p> <img src='assets/images/zam.jpg'> <p>" + powers.healthPoints[3] + "</p> </div>");
+	imageZam = $("<div class='charImg charZam'> <p>" + powers.name[3] + "</p> <img src='assets/images/zam.jpg'> <p class='healthZam'>" + powers.healthPoints[3] + "</p> </div>");
 	$("#chooseCharacter").append(imageZam);
 	$(".charZam").data("identity", powers.name[3]);
 	$(".charZam").attr("data-hp", powers.healthPoints[3]);
@@ -98,7 +98,7 @@ function selectCharacter() {
 			selectedCharacterOriginalAP = $(this).data("ap");
 			selectedCharacterCAP = $(this).data("cap");
 			$(this).addClass("selectedChar");
-			
+
 			console.log(selectedCharacter);
 			console.log("selected char hp " + selectedCharacterHP);
 			console.log("selected char ap " + selectedCharacterAP);
@@ -163,6 +163,19 @@ function battle() {
 			
 			//Your HP goes down by defender's CAP damage
 			selectedCharacterHP = (selectedCharacterHP - selectedDefenderCAP);
+
+			if (selectedCharacterName === "Leia Organa") {
+				$(".healthLeia").html(selectedCharacterHP);
+			} 
+			else if (selectedCharacterName === "Padme Amidala") {
+				$(".healthPadme").html(selectedCharacterHP);
+			} 
+			else if (selectedCharacterName === "Rey") {
+				$(".healthRey").html(selectedCharacterHP);
+			}
+			else if (selectedCharacterName === "Zam Wessell") {
+				$(".healthZam").html(selectedCharacterHP);
+			}
 			
 			//defender's HP goes down by your AP
 			selectedDefenderHP = (selectedDefenderHP - selectedCharacterAP);
@@ -194,11 +207,11 @@ function battle() {
 
 					if (numOfBattles > 2) {
 					//else if no enemies left, you win
-					$("#defenders").children("div:first").remove();
-					$(".attackReport").remove();
-					$(".youWonRound").remove();
-					$("<h5 class='youWon'>All enemies are defeated. You win!</h5>").appendTo("#defenders");
-					$("#fight").off("click");
+						$("#defenders").children("div:first").remove();
+						$(".attackReport").remove();
+						$(".youWonRound").remove();
+						$("<h5 class='youWon'>All enemies are defeated. You win!</h5>").appendTo("#defenders");
+						$("#fight").off("click");
 					}
 			}
 			
