@@ -180,6 +180,19 @@ function battle() {
 			//defender's HP goes down by your AP
 			selectedDefenderHP = (selectedDefenderHP - selectedCharacterAP);
 
+			if (selectedDefenderName === "Leia Organa") {
+				$(".healthLeia").html(selectedDefenderHP);
+			} 
+			else if (selectedDefenderName === "Padme Amidala") {
+				$(".healthPadme").html(selectedDefenderHP);
+			} 
+			else if (selectedDefenderName === "Rey") {
+				$(".healthRey").html(selectedDefenderHP);
+			}
+			else if (selectedDefenderName === "Zam Wessell") {
+				$(".healthZam").html(selectedDefenderHP);
+			}
+
 			//you attacked defender for your AP damage
 			$("<h5 class='attackReport'>You attacked " + selectedDefenderName + " for " + selectedCharacterAP + " damage.</h5>").appendTo("#defenders");
 
