@@ -17,3 +17,18 @@ h5 {
 	font-size: 16px;
 }
 
+.selectedChar {
+	background-color: white;
+	border: 1px solid green;
+}
+
+.availableEnemies {
+	background-color: red;
+	border: 1px solid black;
+}
+
+.selectedDefender {
+	background-color: black;
+	color: white;
+	border: 1px solid green;
+}

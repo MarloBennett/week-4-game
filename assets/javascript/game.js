@@ -29,6 +29,8 @@ var enemyChosen;
 
 var firstFight;
 
+var numOfBattles = 0;
+
 $(document).ready(function() {
 
 //calls function to initialize game when page is loaded
@@ -95,6 +97,7 @@ function selectCharacter() {
 			selectedCharacterAP = $(this).data("ap");
 			selectedCharacterOriginalAP = $(this).data("ap");
 			selectedCharacterCAP = $(this).data("cap");
+			$(this).addClass("")
 
 			//try if else statements to change HP for each character
 			
@@ -136,6 +139,7 @@ function selectCharacter() {
 function battle() {
 
 	$("#fight").on("click", function(event) {
+
 
 		//warns if no enemy has been selected
 		if (!enemyChosen) {
@@ -185,13 +189,19 @@ function battle() {
 				$("#defenders").children("div:first").remove();
 				$(".attackReport").remove();
 				$("<h5 class='youWonRound'>You defeated " + selectedDefenderName + ". You can select another enemy to fight.</h5>").appendTo("#defenders");
+				//counts the number of battles
+				numOfBattles++;
+
+					if (numOfBattles > 2) {
+					//else if no enemies left, you win
+					$("#defenders").children("div:first").remove();
+					$(".attackReport").remove();
+					$(".youWonRound").remove();
+					$("<h5 class='youWon'>All enemies are defeated. You win!</h5>").appendTo("#defenders");
+					$("#fight").off("click");
+					}
 			}
-			else if (!($("#enemies").has(".charImg").length)) {
-				//else if no enemies left, you win
-				$("#defenders").children("div:first").remove();
-				$(".attackReport").remove();
-				$("<h5 class='youWon'>All enemies are defeated. You win!</h5>").appendTo("#defenders");
-			}
+			
 		}
 
 	});
